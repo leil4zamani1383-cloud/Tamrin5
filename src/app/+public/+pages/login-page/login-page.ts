@@ -1,21 +1,28 @@
 import { Component, inject } from '@angular/core';
-import { Router } from '@angular/router';
+import { FormsModule } from '@angular/forms';
+import { Router, RouterOutlet } from '@angular/router';
 
 @Component({
   selector: 'app-login-page',
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './login-page.html',
   styleUrl: './login-page.scss',
 })
 export class LoginPage {
  router=inject(Router);
+ message:string='';
  loginForm:loginForm={
   username:'',
   password:'',
   keepMe:false
  };
- chrck(){
-  
+ check(){
+ if(this.loginForm.username=='admin' && this.loginForm.password=='admin'){
+  this.router.navigateByUrl('private');
+ }
+else{
+  this.message='نام کاربری صحیح نیست';
+}
  }
 }
 
