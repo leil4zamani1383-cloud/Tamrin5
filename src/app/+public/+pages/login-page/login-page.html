@@ -13,7 +13,7 @@
             <label > من رابه خاطر بسپار</label>
          </div>
          <div>
-            <button  type="submit">ورود</button>
+            <button [disabled]="loginForm.username==''|| loginForm.password=='' " type="submit">ورود</button>
          </div>
          @if (message!==''){
             <div>

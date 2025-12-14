@@ -18,7 +18,11 @@ export class LoginPage {
  };
  check(){
  if(this.loginForm.username=='admin' && this.loginForm.password=='admin'){
-  this.router.navigateByUrl('private');
+  sessionStorage.setItem('auth-token','vfzdzdjvvmnx');
+  if (this.loginForm.keepMe==true) {
+    localStorage.setItem('auth-token','vfzdzdjvvmnx')
+  }
+  this.router.navigateByUrl('private',);
  }
 else{
   this.message='نام کاربری صحیح نیست';
