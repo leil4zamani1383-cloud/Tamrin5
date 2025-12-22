@@ -1,0 +1,43 @@
+:host{
+    display:flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 55vh;
+}
+.login{
+    background-color:white;
+    border: 1px solid darkgray;
+    border-radius: 0.3em;
+    padding: 1em;
+    box-shadow: 0 0 1em 0.1em rgb(62, 62, 62);
+    div{
+        margin: 0.5em;
+        label:not(:last-of-type){
+            display: block;
+        }
+        input[type=text],input[type=password]{
+            width: 100%;
+            padding: 0.3em;
+            box-sizing:border-box;
+        }
+        button{
+            background: rgb(64, 167, 241);
+            color: rgb(216, 230, 235);
+            width: 100%;
+            box-sizing: border-box;
+            border: none;
+            border-radius: 0.3em;
+            padding: 0.3em;
+        }
+        button[disabled]{
+         background-color:darkgray;
+        }
+    }
+  .message{
+    background-color: aqua;
+    padding: 0.4em;
+    border-radius: 0.4em;
+    text-align: center;
+  }
+
+}
