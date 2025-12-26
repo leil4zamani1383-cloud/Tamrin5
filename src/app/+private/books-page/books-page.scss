@@ -1,5 +1,5 @@
 .primary {
-  background-color:rgb(14, 96, 219);;
+  background-color: rgb(14, 96, 219);
   color: white;
   padding: 0.2em 0.5em;
   border-radius: 0.3em;
@@ -14,7 +14,8 @@ table {
     color: white;
     text-align: right;
   }
-  th,td{
+  th,
+  td {
     padding: 0.2em;
   }
   th {
@@ -23,7 +24,7 @@ table {
   tr {
     border-bottom: 1px solid rgb(102, 100, 100);
   }
-  tr:ntn-of-type(2n+1) {
+  tr:ntn-of-type(2n + 1) {
     background-color: rgb(102, 100, 100);
   }
 }

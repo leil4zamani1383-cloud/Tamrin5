@@ -38,9 +38,9 @@ export class BooksPage implements OnInit {
   }
 }
 export interface BooksItem {
-  id: number;
+  id?: number;
   title: string;
   writer: string;
   publisher: string;
-  price: number;
+  price?: number;
 }
