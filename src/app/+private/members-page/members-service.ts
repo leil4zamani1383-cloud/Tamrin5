@@ -1,51 +1,46 @@
 import { Injectable } from '@angular/core';
 import { MemberItem } from './members-page';
+import { BaseService } from '../../+shered/+base/base-service';
 
 @Injectable({
   providedIn: 'root',
 })
-export class MembersService {
-  private data: MemberItem[] = [
+export class MembersService  extends BaseService<MemberItem>{
+  override data: MemberItem[] = [
     {
       id: 1,
-      Firstname: 'لیلا',
-      lastname: 'زمانی',
-      Phonenumber: 9185456452,
-      Nationalcode: 4020538024,
+      Fullname:'لیلازمانی',
+      mobile: '09185456452',
+      address: 'همدان',
     },
     {
       id: 2,
-      Firstname: 'فرشته',
-      lastname: 'قصبستانی',
-      Phonenumber: 9188965404,
-      Nationalcode: 4020538025,
+      Fullname: 'فرشته قصبستانی',
+    mobile: '09188965404',
+      address: 'همدان',
     },
     {
       id: 3,
-      Firstname: 'زینب',
-      lastname: 'رمضانی',
-      Phonenumber: 9181111111,
-      Nationalcode: 4020536026,
+      Fullname: 'زینب رمضانی',
+      mobile: '09181111111',
+      address: 'تهران',
     },
     {
       id: 4,
-      Firstname: 'نازنین',
-      lastname: 'مسلمی',
-      Phonenumber: 9182222222,
-      Nationalcode: 4020535026,
+      Fullname: 'نازنین مسلمی',
+      mobile: '09182222222',
+      address: 'اصفهان',
     },
     {
       id: 5,
-      Firstname: 'پریا',
-      lastname: 'مومیموند',
-      Phonenumber: 9180000000,
-      Nationalcode: 4020534026,
+      Fullname: 'پریا مومیوند',
+      mobile: '09180000000',
+      address:'اسدآباد' ,
     },
   ];
-  list() {
-    return [...this.data];
-  }
-  add(item: MemberItem) {
-    this.data.push(item);
+  override update(destination: MemberItem, source: MemberItem): void {
+    destination.Fullname=source.Fullname;
+    destination.mobile=source.mobile;
+    destination.address=source.address;
   }
 }

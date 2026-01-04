@@ -1,13 +1,13 @@
+<my-crud [mystate]="state" (onCancel)="cancel()"></my-crud>
 @if (state=='list') {
 <button (click)="add()" class="primary">افزودن</button>
 <table>
   <thead>
     <tr>
       <th>شناسه</th>
-      <th>نام</th>
-      <th>نام خانوادگی</th>
-      <th>شماره تلفن</th>
-      <th>کد ملی</th>
+      <th>نام و نام خانوادگی</th>
+      <th>موبایل</th>
+      <th>آدرس</th>
       <th></th>
     </tr>
   </thead>
@@ -15,51 +15,54 @@
     @for(item of data; track $index) {
     <tr>
       <td>{{ item.id }}</td>
-      <td>{{ item.Firstname }}</td>
-      <td>{{ item.lastname }}</td>
-      <td>{{ item.Phonenumber }}</td>
-      <td>{{ item.Nationalcode }}</td>
+      <td>{{ item.Fullname }}</td>
+      <td>{{ item.mobile }}</td>
+      <td>{{ item.address }}</td>
       <td></td>
       <td>
-        <button class="primary">ویرایش</button>
-        <button class="primary">حذف</button>
+        <button (click)="edit(item)" class="primary">ویرایش</button>
+        <button (click)="remove(item)" class="primary">حذف</button>
       </td>
     </tr>
     }
   </tbody>
 </table>
 } @else {
+  @if (state=='remove') {
+    <div class="alert">
+آیا از حدف ایم عضو اطمینان دارید ؟
+    </div>
+  }
 <form (ngSubmit)="save()">
   <div>
-    <input [(ngModel)]="item.id" id="id" name="id" type="number" placeholder="شناسه" />
+    <input [disabled]="state=='edit' || state=='remove'" [class.ghofl]="state=='edit'" [(ngModel)]="item.id" id="id" name="id" type="number" placeholder="شناسه" />
+  </div>
+  <div>
     <input
-      [(ngModel)]="item.Firstname"
-      id="Firstname"
-      name="Firstname"
+      [(ngModel)]="item.Fullname"
+      id="Fullname"
+      name="Fullname"
       type="text"
-      placeholder="نام"
-    />
+      placeholder="نام و نام خانوادگی "
+    >
+     </div>
+     <div>
     <input
-      [(ngModel)]="item.lastname"
-      id="lastname"
-      name="lastname"
+      [(ngModel)]="item.mobile"
+      id="mobile"
+      name="mobile"
       type="text"
-      placeholder="نام خانوادگی"
-    />
+      placeholder="موبایل"
+    >
+    </div>
+    <div> 
     <input
-      [(ngModel)]="item.Phonenumber"
-      id="Phonenumber"
-      name="Phonenumber"
-      type="number"
-      placeholder="شماره تلفن"
-    />
-    <input
-      [(ngModel)]="item.Phonenumber"
-      id="Nationalcode"
-      name="Nationalcode"
-      type="number"
-      placeholder="کد ملی"
-    />
+      [(ngModel)]="item.address"
+      id="address"
+      name="address"
+      type="text"
+      placeholder="آدرس"
+    >
   </div>
   <div>
     <button class="primary" type="submit">تایید</button>

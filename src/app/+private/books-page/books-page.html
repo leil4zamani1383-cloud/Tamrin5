@@ -1,3 +1,10 @@
+<my-crud 
+[mystate]="state"
+[columns]="booksColumns"
+ (onCancel)="cancel()"
+ (onAdd)="add()">
+</my-crud>
+<hr />
 @if (state=='list') {
 <button (click)="add()" class="primary">افزودن</button>
 <table>
@@ -20,15 +27,14 @@
       <td>{{ item.publisher }}</td>
       <td>{{ item.price }}</td>
       <td>
-        <button class="primary">ویرایش</button>
-        <button class="primary">حذف</button>
+        <button (click)="edit(item)" class="primary">ویرایش</button>
+        <button (click)="remove(item)" class="primary">حذف</button>
       </td>
     </tr>
     }
   </tbody>
 </table>
-}
- @else {
+} @else {
 <form (ngSubmit)="save()">
   <div>
     <input [(ngModel)]="item.id" id="id" name="id" type="number" placeholder="شناسه" />

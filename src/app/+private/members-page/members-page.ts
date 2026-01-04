@@ -1,50 +1,32 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { MembersService } from './members-service';
 import { FormsModule } from '@angular/forms';
+import { thing } from '../../+shered/+base/base-thinh';
+import { BaseCrudPage } from '../../+shered/+base/base-crud-page';
+import { BaseService } from '../../+shered/+base/base-service';
+import { BaseCrudComponent } from "../../+shered/+base/base-crud-component/base-crud-component";
 
 @Component({
   selector: 'app-members-page',
-  imports: [FormsModule],
+  imports: [FormsModule, BaseCrudComponent],
   templateUrl: './members-page.html',
   styleUrl: './members-page.scss',
 })
-export class MembersPage implements OnInit {
-  save() {
-    this.memberService.add(this.item);
-    this.dataRefresh();
-    this.state = 'list';
-  }
+export class MembersPage extends BaseCrudPage<MemberItem> implements OnInit {
   ngOnInit(): void {
-    this.dataRefresh();
+  this.dataRefresh();
   }
-  data: MemberItem[] = [];
-  item: MemberItem = {
-    
-    Firstname: '',
-    lastname: '',
- 
-  };
-  memberService = inject(MembersService);
-  state: string = 'list';
-  dataRefresh() {
-    this.data = this.memberService.list();
-  }
-  add() {
-    this.state ='add';
-    this.item={
-    Firstname: '',
-    lastname: '',
-   
-    }
-  }
-  cancel() {
-    this.state ='list';
-  }
+ override dataServisce=inject(MembersService);
+ override addPrepair(): void {
+   this.item={
+    Fullname:'',
+    address:'',
+    mobile:'',
+   }
+ }
 }
-export interface MemberItem {
-  id?: number;
-  Firstname: string;
-  lastname: string;
-  Phonenumber?: number;
-  Nationalcode?: number;
+export interface MemberItem extends thing {
+  Fullname: string;
+  mobile: string;
+  address: string;
 }

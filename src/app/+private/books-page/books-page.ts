@@ -1,49 +1,40 @@
 import { Component, inject, OnInit } from '@angular/core';
 import { BooksService } from './books-service';
 import { FormsModule } from '@angular/forms';
+import { thing } from '../../+shered/+base/base-thinh';
+import { BaseCrudPage } from '../../+shered/+base/base-crud-page';
+import { BaseCrudComponent, colum } from "../../+shered/+base/base-crud-component/base-crud-component";
+import { Field } from '@angular/forms/signals';
+import { Title } from '@angular/platform-browser';
 
 @Component({
   selector: 'app-books-page',
-  imports: [FormsModule],
+  imports: [FormsModule, BaseCrudComponent],
   templateUrl: './books-page.html',
   styleUrl: './books-page.scss',
 })
-export class BooksPage implements OnInit {
-  save() {
-       this.booksServisce.add(this.item);
-   this.dataRefresh();
-   this.state='list';
-     
-  }
+export class BooksPage extends BaseCrudPage<BooksItem> implements OnInit {
   ngOnInit(): void {
     this.dataRefresh();
   }
-  data: BooksItem[] = [];
-  item:BooksItem={
-   title:'',
-    writer:'',
-    publisher:''
-  };
-  booksServisce = inject(BooksService);
-  state:string='list';
-  dataRefresh() {
-    this.data = this.booksServisce.list();
-  }
-  add() {
-    this.state='add';
-    this.item={
-    title:'',
-    writer:'',
-    publisher:''
-    };
-  }
-  
-  cancel(){
-    this.state='list';
-  }
+   override dataServisce = inject(BooksService);
+   override addPrepair(): void {
+     this.item={
+      title:'',
+      publisher:'',
+      writer:'',
+     }
+   }
+   booksColumns:colum[]=[
+     {Field:'id',Title:'شناسه'},
+     {Field:'titel',Title:'عنوان'},
+     {Field:'writer',Title:'نویسنده'},
+     {Field:'publisher',Title:'ناشر'},
+     {Field:'price',Title:'قیمت'},
+    ]
+   
 }
-export interface BooksItem {
-  id?: number;
+export interface BooksItem extends thing { 
   title: string;
   writer: string;
   publisher: string;

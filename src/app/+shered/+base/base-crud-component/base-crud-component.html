@@ -1,0 +1,50 @@
+@if (mystate=='list'){
+
+<div>
+  <button>افزودن</button>
+</div>
+<table>
+  <thead>
+    <tr>
+@for (col of columns; track $index) {
+    <th>{{item.title}}</th>
+}
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+     @for (col of columns; track $index) {}
+     <td>آزمایش</td>
+     <td>
+        <button>ویرایش</button>
+        <button>حذف</button>
+      </td>
+    </tr>
+      <tr>
+     @for (col of columns; track $index) {}
+     <td>آزمایش</td>
+     <td>
+        <button>ویرایش</button>
+        <button>حذف</button>
+      </td>
+    </tr>
+      <tr>
+     @for (col of columns; track $index) {}
+     <td>آزمایش</td>
+     <td>
+        <button>ویرایش</button>
+        <button>حذف</button>
+      </td>
+    </tr>
+    
+  </tbody>
+  <tbody>
+} @else {
+<form>
+  <div>
+    <button type="button">تایید</button>
+    <button (click)="onCancel.emit()" type="button">حذف</button>
+  </div>
+</form>
+}

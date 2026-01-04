@@ -10,7 +10,7 @@ table {
   width: 100%;
   border-collapse: collapse;
   th {
-    border-color: rgb(117, 117, 117);
+    background-color: rgb(117, 117, 117);
     color: white;
     text-align: right;
   }
@@ -24,7 +24,7 @@ table {
   tr {
     border-bottom: 1px solid rgb(102, 100, 100);
   }
-  tr:nth-of-type(2n + 1) {
+  tr:ntn-of-type(2n + 1) {
     background-color: rgb(102, 100, 100);
   }
 }
