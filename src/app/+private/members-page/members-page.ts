@@ -19,11 +19,10 @@ export class MembersPage implements OnInit {
   }
   data: MemberItem[] = [];
   item: MemberItem = {
-    id: 0,
+    
     Firstname: '',
     lastname: '',
-    Phonenumber: 0,
-    Nationalcode: 0,
+ 
   };
   memberService = inject(MembersService);
   state: string = 'list';
@@ -32,15 +31,20 @@ export class MembersPage implements OnInit {
   }
   add() {
     this.state ='add';
+    this.item={
+    Firstname: '',
+    lastname: '',
+   
+    }
   }
   cancel() {
     this.state ='list';
   }
 }
 export interface MemberItem {
-  id: number;
+  id?: number;
   Firstname: string;
   lastname: string;
-  Phonenumber: number;
-  Nationalcode: number;
+  Phonenumber?: number;
+  Nationalcode?: number;
 }
