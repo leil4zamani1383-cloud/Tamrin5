@@ -8,9 +8,8 @@ describe('BaseCrudComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [BaseCrudComponent]
-    })
-    .compileComponents();
+      imports: [BaseCrudComponent],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(BaseCrudComponent);
     component = fixture.componentInstance;

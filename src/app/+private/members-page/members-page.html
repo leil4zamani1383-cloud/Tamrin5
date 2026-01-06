@@ -1,41 +1,23 @@
-<my-crud [mystate]="state" (onCancel)="cancel()"></my-crud>
-@if (state=='list') {
-<button (click)="add()" class="primary">افزودن</button>
-<table>
-  <thead>
-    <tr>
-      <th>شناسه</th>
-      <th>نام و نام خانوادگی</th>
-      <th>موبایل</th>
-      <th>آدرس</th>
-      <th></th>
-    </tr>
-  </thead>
-  <tbody>
-    @for(item of data; track $index) {
-    <tr>
-      <td>{{ item.id }}</td>
-      <td>{{ item.Fullname }}</td>
-      <td>{{ item.mobile }}</td>
-      <td>{{ item.address }}</td>
-      <td></td>
-      <td>
-        <button (click)="edit(item)" class="primary">ویرایش</button>
-        <button (click)="remove(item)" class="primary">حذف</button>
-      </td>
-    </tr>
-    }
-  </tbody>
-</table>
-} @else {
-  @if (state=='remove') {
-    <div class="alert">
-آیا از حدف ایم عضو اطمینان دارید ؟
-    </div>
-  }
-<form (ngSubmit)="save()">
+<my-crud
+  [mystate]="state"
+  [columns]="memberColumns"
+  [mydata]="data"
+  (onCancel)="cancel()"
+  (onAdd)="add()"
+  (onEdit)="edit($event)"
+  (onRemove)="remove($event)"
+  (onSave)="save()"
+>
   <div>
-    <input [disabled]="state=='edit' || state=='remove'" [class.ghofl]="state=='edit'" [(ngModel)]="item.id" id="id" name="id" type="number" placeholder="شناسه" />
+    <input
+      [disabled]="state=='edit' || state=='remove'"
+      [class.ghofl]="state=='edit'"
+      [(ngModel)]="item.id"
+      id="id"
+      name="id"
+      type="number"
+      placeholder="شناسه"
+    />
   </div>
   <div>
     <input
@@ -44,29 +26,13 @@
       name="Fullname"
       type="text"
       placeholder="نام و نام خانوادگی "
-    >
-     </div>
-     <div>
-    <input
-      [(ngModel)]="item.mobile"
-      id="mobile"
-      name="mobile"
-      type="text"
-      placeholder="موبایل"
-    >
-    </div>
-    <div> 
-    <input
-      [(ngModel)]="item.address"
-      id="address"
-      name="address"
-      type="text"
-      placeholder="آدرس"
-    >
+    />
   </div>
   <div>
-    <button class="primary" type="submit">تایید</button>
-    <button (click)="cancel()" class="primary" type="button">انصراف</button>
+    <input [(ngModel)]="item.mobile" id="mobile" name="mobile" type="text" placeholder="موبایل" />
   </div>
-</form>
-}
+  <div>
+    <input [(ngModel)]="item.address" id="address" name="address" type="text" placeholder="آدرس" />
+  </div>
+</my-crud>
+
